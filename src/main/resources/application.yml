@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: springboot
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://ep-winter-river-a5wyu1fg.us-east-2.aws.neon.tech/roulettedb
+    username: roulettedb_owner
+    password: fsGe7pSVD1xB
