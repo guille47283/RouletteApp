@@ -8,3 +8,7 @@ spring:
     url: jdbc:postgresql://ep-winter-river-a5wyu1fg.us-east-2.aws.neon.tech/roulettedb
     username: roulettedb_owner
     password: fsGe7pSVD1xB
+  jpa:
+    hibernate:
+      ddl-auto: create
+
