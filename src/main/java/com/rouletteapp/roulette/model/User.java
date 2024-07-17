@@ -1,14 +1,13 @@
 package com.rouletteapp.roulette.model;
 
+
 import jakarta.persistence.*;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.IdGeneratorType;
-
-import java.io.StringBufferInputStream;
 import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,9 +19,14 @@ public class User {
     @Id
     @GeneratedValue()
     private Integer id;
+
+    @NotBlank
+    @NotEmpty
     @Column
     private String username;
-    @Column
+
+    @Email
+    @Column( unique=true , nullable = false)
     private String email;
     @Column
     private String password;
