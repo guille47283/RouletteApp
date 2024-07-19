@@ -10,5 +10,5 @@ spring:
     password: fsGe7pSVD1xB
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 

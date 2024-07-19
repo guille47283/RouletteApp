@@ -21,18 +21,12 @@ public class UserService {
     public User savedUser (User user){
 
         String hashPass = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        if (user.getId() != null) {
-            user.setCreatedAt(LocalDateTime.now());
-            user.setUpdatedAt(LocalDateTime.now());
-            user.setLastLogin(LocalDateTime.now());
+
             user.setPassword(hashPass);
             User savedUser = userRepository.save(user);
-
-
             log.info("Employee with id: {} saved successfully", user.getId());
             return savedUser;
-        }
-        return null;
+
     }
 
     public Page<User> getAllUsers (Integer page, Integer size, Boolean enablePagination ) {

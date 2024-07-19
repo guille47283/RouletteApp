@@ -17,9 +17,9 @@ public class UserController {
 
     private final UserService userService;
 
-    @NotEmpty(message = "Email cannot be empty")
+
     @PostMapping("/users")
-    public ResponseEntity<User> saveUser(@Valid @RequestBody User user)
+    public ResponseEntity<User> saveUser( @RequestBody User user)
     {
         return ResponseEntity.ok().body(userService.savedUser(user));
     }
