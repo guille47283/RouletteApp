@@ -1,14 +1,15 @@
 package com.rouletteapp.roulette.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-//import jakarta.persistence.Id;
-//import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.IdGeneratorType;
-
-import java.io.StringBufferInputStream;
 import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,19 +18,41 @@ import java.time.LocalDateTime;
 @Table( name = "users")
 
 public class User {
+    @JsonIgnore
     @Id
-    @GeneratedValue()
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer id;
+
+
     @Column
     private String username;
-    @Column
+
+
+    @Column( unique=true , nullable = false)
+    @Email (message = "Wrong Email ")
     private String email;
+
+
     @Column
     private String password;
-    @Column
+
+    @JsonIgnore
+    @Column (nullable = true)
     private LocalDateTime createdAt;
-    @Column
+
+    @JsonIgnore
+    @Column (nullable = true)
     private LocalDateTime updatedAt;
-    @Column
+
+    @JsonIgnore
+    @Column (nullable = true)
     private LocalDateTime lastLogin;
+
+    @PrePersist
+    protected void OnCreate (){
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+        lastLogin = null;
+    }
+
 }
