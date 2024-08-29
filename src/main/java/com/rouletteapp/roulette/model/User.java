@@ -1,13 +1,10 @@
 package com.rouletteapp.roulette.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
@@ -18,10 +15,10 @@ import java.time.LocalDateTime;
 @Table( name = "users")
 
 public class User {
-    @JsonIgnore
+   // @JsonIgnore
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
 
     @Column
@@ -36,15 +33,15 @@ public class User {
     @Column
     private String password;
 
-    @JsonIgnore
+   // @JsonIgnore
     @Column (nullable = true)
     private LocalDateTime createdAt;
 
-    @JsonIgnore
+   // @JsonIgnore
     @Column (nullable = true)
     private LocalDateTime updatedAt;
 
-    @JsonIgnore
+   // @JsonIgnore
     @Column (nullable = true)
     private LocalDateTime lastLogin;
 

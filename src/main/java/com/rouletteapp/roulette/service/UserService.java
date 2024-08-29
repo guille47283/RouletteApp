@@ -1,5 +1,6 @@
 package com.rouletteapp.roulette.service;
 
+import com.rouletteapp.roulette.DTO.UserDTO;
 import com.rouletteapp.roulette.model.User;
 import com.rouletteapp.roulette.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +40,8 @@ public class UserService {
     }
 
 
-    public void deleteUser (Integer id) {
+    public void deleteUser (Long  id) {
+
         userRepository.deleteById(id);
     }
 
@@ -49,9 +52,21 @@ public class UserService {
         }
       return null;
     }
-    public boolean existById(Integer id) {
+    public boolean existById(Long id) {
         return  userRepository.existsById(id);
     }
+
+    public Optional<UserDTO> findID(Long  id) {
+
+        Optional<User> userOptional = userRepository.findById(id);
+        return userOptional.map(user -> new UserDTO(user.getId(),user.getEmail(),user.getUsername(),user.getCreatedAt(),user.getLastLogin(),user.getUpdatedAt()));
+
+    }
+
+
+
+
+
 
 
 }
